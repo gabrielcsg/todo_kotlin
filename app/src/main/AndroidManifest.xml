@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ListaDeTarefas">
-        <activity android:name=".NewTodoActivity"></activity>
+        <activity android:name=".activity.NewTodoActivity"></activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.ListaDeTarefas.NoActionBar">
             <intent-filter>

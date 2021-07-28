@@ -1,7 +1,8 @@
-package com.gabrielcastro.listadetarefas
+package com.gabrielcastro.listadetarefas.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.gabrielcastro.listadetarefas.R
 
 class NewTodoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
