@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Lista de Tarefas</string>
+    <string name="action_settings">Ajustes</string>
+
+    <string name="next">Proximo</string>
+    <string name="previous">Anterior</string>
+
+    <string name="hello_first_fragment">Ola, primeiro fragmento</string>
+    <string name="new_todo">Nova Tarefa</string>
+    <string name="hint_new_todo">Digite uma tarefa</string>
+</resources>
