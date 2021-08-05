@@ -15,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gabrielcastro.listadetarefas.R
 import com.gabrielcastro.listadetarefas.adapter.TodoAdapter
 import com.gabrielcastro.listadetarefas.databinding.ActivityMainBinding
+import com.gabrielcastro.listadetarefas.helper.DBHelper
 import com.gabrielcastro.listadetarefas.helper.RecyclerItemClickListener
+import com.gabrielcastro.listadetarefas.helper.TodoDAO
 import com.gabrielcastro.listadetarefas.model.Todo
 import com.google.android.material.snackbar.Snackbar
 
@@ -63,9 +65,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadTodos() {
         // list
-        listTodo.add(Todo(1, "Todo 1"))
-        listTodo.add(Todo(2, "Todo 2"))
-        listTodo.add(Todo(3, "Todo 3"))
+        val todoDAO = TodoDAO(applicationContext)
+        listTodo = todoDAO.list()
         // config adapter
         todoAdapter = TodoAdapter(listTodo)
         //config recycler
