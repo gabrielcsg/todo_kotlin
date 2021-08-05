@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.NewTodoActivity">
+    tools:context=".activity.NewTodoActivity"
+    android:id="@+id/contentNewTodo">
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="0dp"

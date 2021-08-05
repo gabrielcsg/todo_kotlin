@@ -8,4 +8,6 @@
     <string name="hello_first_fragment">Ola, primeiro fragmento</string>
     <string name="new_todo">Nova Tarefa</string>
     <string name="hint_new_todo">Digite uma tarefa</string>
+    <string name="save">Salvar</string>
+    <string name="edit">Editar</string>
 </resources>
