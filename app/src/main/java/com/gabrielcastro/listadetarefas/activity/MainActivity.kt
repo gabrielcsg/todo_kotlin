@@ -1,5 +1,6 @@
 package com.gabrielcastro.listadetarefas.activity
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -43,11 +45,27 @@ class MainActivity : AppCompatActivity() {
                 recyclerView,
                 object : RecyclerItemClickListener.OnItemClickListener {
                     override fun onItemClick(view: View?, position: Int) {
-                        Toast.makeText(applicationContext, listTodo[position].name, Toast.LENGTH_SHORT).show()
+                        val todoSelected = listTodo[position]
+
+                        val intent = Intent(this@MainActivity, NewTodoActivity::class.java)
+                        intent.putExtra("todoSelected", todoSelected)
+                        startActivity(intent)
                     }
 
                     override fun onLongItemClick(view: View?, position: Int) {
-                        Toast.makeText(applicationContext, "LongItemClick ${listTodo[position].name}" , Toast.LENGTH_LONG).show()
+                        val dialog = AlertDialog.Builder(this@MainActivity)
+                        dialog.setTitle("Remove Todo")
+                        dialog.setMessage("Are you sure you want to remove: ${listTodo[position].name}?")
+
+                        dialog.setPositiveButton("YES") { _: DialogInterface, _: Int ->
+                            val todoDAO = TodoDAO(applicationContext)
+                            todoDAO.delete(listTodo[position])
+                            loadTodos()
+                        }
+                        dialog.setNegativeButton("NO", null)
+
+                        dialog.create()
+                        dialog.show()
                     }
 
                     override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -73,7 +91,12 @@ class MainActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(applicationContext)
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
-        recyclerView.addItemDecoration(DividerItemDecoration(applicationContext, LinearLayout.VERTICAL))
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                applicationContext,
+                LinearLayout.VERTICAL
+            )
+        )
         recyclerView.adapter = todoAdapter
     }
 

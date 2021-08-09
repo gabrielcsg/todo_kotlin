@@ -25,18 +25,35 @@ class TodoDAO(context: Context) : ITodoDAO {
             write.insert(DBHelper.TABLE_TODO, null, cv)
             Log.d(tag, "Todo save successfully")
         } catch (e: Exception) {
-            Log.d(tag, "Error on save todo");
+            Log.d(tag, "Error on save todo")
             return false
         }
         return true
     }
 
     override fun update(todo: Todo): Boolean {
-        TODO("Not yet implemented")
+        try {
+            val cv = ContentValues()
+            cv.put("id", todo.id)
+            cv.put("name", todo.name)
+            write.update(DBHelper.TABLE_TODO, cv, "id=${todo.id}", null)
+            Log.d(tag, "Todo updated successfully")
+        } catch (e: Exception) {
+            Log.d(tag, "Error on update todo")
+            return false
+        }
+        return true
     }
 
     override fun delete(todo: Todo): Boolean {
-        TODO("Not yet implemented")
+        try {
+            write.delete(DBHelper.TABLE_TODO, "id=${todo.id}", null)
+            Log.d(tag, "Todo removed successfully")
+        } catch (e: Exception) {
+            Log.d(tag, "Error on remove todo")
+            return false
+        }
+        return true
     }
 
     override fun list(): ArrayList<Todo> {
